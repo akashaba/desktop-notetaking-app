@@ -6,8 +6,14 @@ export type Note = {
   content: string;
   tags: string;
   isFavorite?: number | boolean;
+  objects?: string | null;
+  drawingData?: string | null;
+  attachmentsData?: string | null;
+  attachmentThumbnailsData?: string | null;
+  deleted?: number | boolean;
   reminderAt?: string | null;
   remindedAt?: string | null;
+  deletedAt?: string | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -30,4 +36,12 @@ export function updateNote(note: Note) {
 
 export function deleteNote(id: string) {
   return window.notesApi.notes.delete(id);
+}
+
+export function restoreNote(id: string) {
+  return window.notesApi.notes.restore(id);
+}
+
+export function purgeNote(id: string) {
+  return window.notesApi.notes.purge(id);
 }
